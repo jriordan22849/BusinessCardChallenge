@@ -1,3 +1,3 @@
 # BusinessCardChallenge
 Javascript Programming Challenge
-![alt text](screenshots/JChallenge1.png.png "ScreenShots")
+https://raw.github.com/jriordan22849/BusinessCardChallenge/screenshots/JChallenge1.png
