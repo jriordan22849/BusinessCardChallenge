@@ -1,0 +1,38 @@
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#placeholder {
+	background-color:#eeeeee;
+    width: 100%;
+    float:left;
+    padding:10px; 
+}
+
+
+#buttons {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+
+h3 {
+    color: black;
+	text-align:center;
+    font-size: 100%;
+}
+
+p {
+    color: black;
+	text-align:center;
+    font-size: 100%;
+    background-color:white;
+}
+
+

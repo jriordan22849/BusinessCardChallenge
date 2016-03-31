@@ -1,0 +1,262 @@
+<!-- Jonathan Riordan -->
+<!-- 31/3/2016 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="myCSS.css">
+    <meta charset="utf-8" />
+    <div id="header">
+    <h2>Business Cards</h2>
+    </div>
+    <h3>Please select a User Name.</h3>
+</head>
+<body>
+
+
+    <div id="placeholder"></div>
+    
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<!-- Display the list of Usernames -->
+    <script>
+    
+    	var username, firstname, lastname, phonenumber,company,job, email;
+    	var username2, firstname2, lastname2, phonenumber2,company2,job2, email2;
+    	var stringCompare;
+    	var bool = 0;
+  		$.getJSON('data.json', function(data) {
+  		
+  		<!-- loop to print the list of user names -->
+        var output="<ol id='business-list'> ";
+        for (var i in data.users) {
+        	output += "<li>" + data.users[i].userName +"</li> "
+        	+ " ";     
+        	if(bool == 1) {
+        		output+= data.users[i].companyName; + " ";
+        	} 
+        }
+        
+        output+="</ol> ";
+        document.getElementById("placeholder").innerHTML=output;
+        
+    	var lis = document.getElementById("business-list").getElementsByTagName('li');
+
+		<!-- Add listener for each element in the list -->
+    	for (var i=0; i<lis.length; i++) {
+        	lis[i].addEventListener('click', Card, false);
+    	}
+
+    	function Card() {
+        	user = this.innerHTML;
+        	var jtext;
+        	
+       		var compareUserNames;
+       		
+       		<!-- loop to compare the selected user name to the usernames in the list. -->
+       		
+       		for(var index in data.users) {
+       			var compareUserNames = user.localeCompare(data.users[index].userName);
+       			if(compareUserNames == 0) {
+       				firstname2 =  JSON.stringify(data.users[index].firstName);
+       				lastname2 = JSON.stringify(data.users[index].lastName);
+       				email2 = JSON.stringify(data.users[index].email);
+       				job2 = JSON.stringify(data.users[index].jobTitle);
+       				company2 = JSON.stringify(data.users[index].companyName);
+       				phonenumber2 = JSON.stringify(data.users[index].phoneNumber);
+       				
+       				
+       				<!-- Remove all the double quotes from the string -->
+       				firstname = firstname2.replace(/"/g, "");
+       				lastname = lastname2.replace(/"/g, "");
+       				email = email2.replace(/"/g, "");
+       				job = job2.replace(/"/g, "");
+       				company = company2.replace(/"/g, "");
+       				phonenumber = phonenumber2.replace(/"/g, "");
+       				
+       			}
+       		}
+       		
+       		
+       		<!-- Alert box to display the selected user details -->
+       		alert("					Business Card"
+       		+ "\nUser Name: " + user
+       		+ "\nEmail: " + email
+       		+ "\nPhone Number: " + phonenumber
+       		+ "\nJob Title: " + job
+       		+ "\nCompany: " + company);
+    
+    	}
+    	
+    	
+  	});
+    </script>
+    
+    
+    <div id="buttons">
+    <button onclick="companyNamesFunc()">Show Company Names</button>
+    <button onclick="hideCompanyNames()">Hide Company Names</button>
+
+
+    
+    <!-- Script is the same to the above code except where a boolean is changed to 1, so the 
+    company names will display once the show company name button is clicked -->
+    <script>		
+    	function companyNamesFunc() {
+    		
+			bool = 1;
+        	     	
+        	var username, firstname, lastname, phonenumber,company,job, email;
+    	var username2, firstname2, lastname2, phonenumber2,company2,job2, email2;
+    	var stringCompare;
+  		$.getJSON('data.json', function(data) {
+  		
+  		<!-- loop to print the list of user names -->
+        var output="<ol id='business-list'> ";
+        for (var i in data.users) {
+        	output += "<li>" + data.users[i].userName +"</li> "
+        	+ " ";     
+        	if(bool == 1) {
+        		output+= "Company Name: " +data.users[i].companyName; + " ";
+        	} 
+        }
+        
+        output+="</ol> ";
+        document.getElementById("placeholder").innerHTML=output;
+        
+    	var lis = document.getElementById("business-list").getElementsByTagName('li');
+
+		<!-- Add listener for each element in the list -->
+    	for (var i=0; i<lis.length; i++) {
+        	lis[i].addEventListener('click', Card, false);
+    	}
+
+    	function Card() {
+        	user = this.innerHTML;
+        	var jtext;
+        	
+       		var compareUserNames;
+       		
+       		<!-- loop to compare the selected user name to the usernames in the list. -->
+       		
+       		for(var index in data.users) {
+       			var compareUserNames = user.localeCompare(data.users[index].userName);
+       			if(compareUserNames == 0) {
+       				firstname2 =  JSON.stringify(data.users[index].firstName);
+       				lastname2 = JSON.stringify(data.users[index].lastName);
+       				email2 = JSON.stringify(data.users[index].email);
+       				job2 = JSON.stringify(data.users[index].jobTitle);
+       				company2 = JSON.stringify(data.users[index].companyName);
+       				phonenumber2 = JSON.stringify(data.users[index].phoneNumber);
+       				
+       				
+       				<!-- Remove all the double quotes from the string -->
+       				firstname = firstname2.replace(/"/g, "");
+       				lastname = lastname2.replace(/"/g, "");
+       				email = email2.replace(/"/g, "");
+       				job = job2.replace(/"/g, "");
+       				company = company2.replace(/"/g, "");
+       				phonenumber = phonenumber2.replace(/"/g, "");
+       				
+       			}
+       		}
+       		
+       		
+       		<!-- Alert box to display the selected user details -->
+       		alert("					Business Card"
+       		+ "\nUser Name: " + user
+       		+ "\nEmail: " + email
+       		+ "\nPhone Number: " + phonenumber
+       		+ "\nJob Title: " + job
+       		+ "\nCompany: " + company);
+    
+    	}
+    	
+    	
+  	});
+        }
+	
+		
+    </script>    
+    
+    
+    <!-- Script is the same to the above code except where a boolean is changed to 0, so the 
+    company names will NOT display once the hide company name button is clicked -->
+    <script>		
+    	function hideCompanyNames() {
+    		
+			bool = 0;
+        	     	
+        	var username, firstname, lastname, phonenumber,company,job, email;
+    		var username2, firstname2, lastname2, phonenumber2,company2,job2, email2;
+    		var stringCompare;
+  			$.getJSON('data.json', function(data) {
+  		
+  			<!-- loop to print the list of user names -->
+        	var output="<ol id='business-list'> ";
+        	for (var i in data.users) {
+        		output += "<li>" + data.users[i].userName +"</li> "
+        		+ " ";     
+        	if(bool == 1) {
+        		output+= "Company Name: " +data.users[i].companyName; + " ";
+        	} 
+        }
+        
+        output+="</ol> ";
+        document.getElementById("placeholder").innerHTML=output;
+        
+    	var lis = document.getElementById("business-list").getElementsByTagName('li');
+
+		<!-- Add listener for each element in the list -->
+    	for (var i=0; i<lis.length; i++) {
+        	lis[i].addEventListener('click', Card, false);
+    	}
+
+    	function Card() {
+        	user = this.innerHTML;
+        	var jtext;
+        	
+       		var compareUserNames;
+       		
+       		<!-- loop to compare the selected user name to the usernames in the list. -->
+       		
+       		for(var index in data.users) {
+       			var compareUserNames = user.localeCompare(data.users[index].userName);
+       			if(compareUserNames == 0) {
+       				firstname2 =  JSON.stringify(data.users[index].firstName);
+       				lastname2 = JSON.stringify(data.users[index].lastName);
+       				email2 = JSON.stringify(data.users[index].email);
+       				job2 = JSON.stringify(data.users[index].jobTitle);
+       				company2 = JSON.stringify(data.users[index].companyName);
+       				phonenumber2 = JSON.stringify(data.users[index].phoneNumber);
+       				
+       				
+       				<!-- Remove all the double quotes from the string -->
+       				firstname = firstname2.replace(/"/g, "");
+       				lastname = lastname2.replace(/"/g, "");
+       				email = email2.replace(/"/g, "");
+       				job = job2.replace(/"/g, "");
+       				company = company2.replace(/"/g, "");
+       				phonenumber = phonenumber2.replace(/"/g, "");
+       				
+       			}
+       		}
+       		
+       		
+       		<!-- Alert box to display the selected user details -->
+       		alert("					Business Card"
+       		+ "\nUser Name: " + user
+       		+ "\nEmail: " + email
+       		+ "\nPhone Number: " + phonenumber
+       		+ "\nJob Title: " + job
+       		+ "\nCompany: " + company);
+    
+    	}
+    	
+    	
+  	});
+        }
+	
+		
+    </script>    
+</body>
+</html>
