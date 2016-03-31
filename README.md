@@ -1,3 +1,3 @@
 # BusinessCardChallenge
 Javascript Programming Challenge
-![alt text](JChallenge1.png.png "Description goes here")
+(https://raw.github.com/jriordan22849/BusinessCardChallenge/master/screenshots/JChallenge1.png.png)
